@@ -1,12 +1,12 @@
 /*
     --Arduino_Rotary_Encoder by Mehmet Yusuf Dal--
     This is a simple Arduino library for minimizing the code while using rotary encoder modules like Ky-040.
-
-    NOTE: If you get multiply definition error while compiling, check out bottom of this file.
 */
 
 #ifndef _ENCODER_H_
 #define _ENCODER_H_
+
+#include "Arduino.h"
 
 #define P_INF 32767  // Positive infinite. Max value of arduino signed int (16 bit).
 #define N_INF -32768 // Negative infinite. Min value of arduino signed int (16 bit).
@@ -56,5 +56,4 @@ public:
 
 };
 
-#include "Encoder.cpp" // To compile the cpp file and this header together. If you get multiply definition error, remove this line.
 #endif
