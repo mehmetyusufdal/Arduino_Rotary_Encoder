@@ -26,7 +26,8 @@ public:
                 - Encoder B pin number.
 
             The other parameters are optional:
-                - Counter start value. If it is less than the minimum counter value, it will be set to the minimum counter value. Default value is 0.
+                - Counter start value. If it is less than the minimum counter value, it will be set to the minimum counter value.
+                    If it is above than the maximum counter value, it will be set to the maximum counter value. Default value is 0.
                 - Minimum counter value. If it is above then the maximum counter value, both will be set to infinite. Default value is N_INF (negative infinite).
                 - Maximum counter value. Default value is P_INF (positive infinite).
         

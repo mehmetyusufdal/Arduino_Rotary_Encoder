@@ -16,8 +16,20 @@ Encoder::Encoder(int A, int B, int c_start, int c_min, int c_max){
     Encoder::c_min = c_min;
     Encoder::c_max = c_max;
 
-    if(c_min > c_start) Encoder::counter = c_min;
-    else Encoder::counter = c_start;
+    if(c_min <= c_start){
+        if(c_max >= c_start){
+            Encoder::counter = c_start;
+            Encoder::c_start = c_start;
+        }
+        else{
+            Encoder::counter = c_max;
+            Encoder::c_start = c_max;
+        }
+    }
+    else{
+        Encoder::counter = c_min;
+        Encoder::c_start = c_min;
+    }
 
     Encoder::A = A;
     Encoder::B = B;
