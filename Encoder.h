@@ -42,12 +42,14 @@ public:
     void stateControl();
 
     /*
-        Sets the minimum counter value to given number. If current counter is less then new minimum, it sets the counter to the new minimum value.
+        If the given number is less then the maximum counter value, sets the minimum counter value to given number. 
+        If current counter is less then new minimum, it sets the counter to the new minimum value.
     */
     void setMin(int);
 
     /*
         If the given number is above then the minimum counter value, sets the maximum counter value to the given number.
+        If current counter is above then new maximum, it sets the counter to the new maximum value.
     */
     void setMax(int);
 

@@ -66,7 +66,10 @@ void Encoder::setMin(int c_min){
 }
 
 void Encoder::setMax(int c_max){
-    if(c_max > Encoder::c_min) Encoder::c_max = c_max;
+    if(c_max > Encoder::c_min){
+        Encoder::c_max = c_max;
+        if(Encoder::counter > c_max) Encoder::counter = c_max;
+    }
 
 }
 
