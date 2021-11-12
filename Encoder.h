@@ -17,6 +17,7 @@ private:
     int A_state, B_state, A_last_state; // To calculate turn count of encoder.
     int counter; // Turn count of encoder.
     int c_min, c_max; // Min & max value of counter.
+    int c_start;
 
 public:
     /*
