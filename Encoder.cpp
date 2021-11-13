@@ -7,7 +7,7 @@
 #define _ENCODER_
 #include "Encoder.h"
 
-Encoder::Encoder(int A, int B, int c_start, int c_min, int c_max){
+Encoder::Encoder(int A, int B, int c_start, int c_step, int c_min, int c_max){
     if(c_min > c_max){
         c_min = N_INF;
         c_max = P_INF;
@@ -15,6 +15,7 @@ Encoder::Encoder(int A, int B, int c_start, int c_min, int c_max){
 
     Encoder::c_min = c_min;
     Encoder::c_max = c_max;
+    Encoder::c_step = c_step;
 
     if(c_min <= c_start){
         if(c_max >= c_start){
@@ -46,10 +47,10 @@ void Encoder::stateControl(){
 
     if(Encoder::A_state != Encoder::A_last_state){
         if(digitalRead(Encoder::B) != Encoder::A_state){
-            if(Encoder::counter < Encoder::c_max) Encoder::counter++;
+            if(Encoder::counter < Encoder::c_max) Encoder::counter += Encoder::c_step;
         }
         else{
-            if(Encoder::counter > Encoder::c_min) Encoder::counter--;
+            if(Encoder::counter > Encoder::c_min) Encoder::counter -= Encoder::c_step;
         }
 
         Encoder::A_last_state = Encoder::A_state;
@@ -86,6 +87,11 @@ void Encoder::setStart(int c_start){
         Encoder::c_start = Encoder::c_min;
     }
 
+}
+
+void Encoder::setStep(int c_step){
+    Encoder::c_step = c_step;
+    
 }
 
 void Encoder::resetCounter(){

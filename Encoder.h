@@ -17,7 +17,8 @@ private:
     int A_state, B_state, A_last_state; // To calculate turn count of encoder.
     int counter; // Turn count of encoder.
     int c_min, c_max; // Min & max value of counter.
-    int c_start;
+    int c_start; // Start value of counter.
+    int c_step; // Incrementation amount of counter.
 
 public:
     /*
@@ -29,12 +30,13 @@ public:
             The other parameters are optional:
                 - Counter start value. If it is less than the minimum counter value, it will be set to the minimum counter value.
                     If it is above than the maximum counter value, it will be set to the maximum counter value. Default value is 0.
+                - Incrementation amount of the counter. Nagative values reverses the encoder direction.
                 - Minimum counter value. If it is above then the maximum counter value, both will be set to infinite. Default value is N_INF (negative infinite).
                 - Maximum counter value. Default value is P_INF (positive infinite).
         
-        (A pin, B pin, Counter start value, Counter min, Counter max)
+        (A pin, B pin, Counter start value, Counter incrementation amount, Counter min, Counter max)
     */
-    Encoder(int, int, int = 0, int = N_INF, int = P_INF);
+    Encoder(int, int, int=0, int=1, int=N_INF, int=P_INF);
     
     /*
         Calculates turn count.
@@ -58,6 +60,11 @@ public:
         If it is above than the maximum counter value, it will be set to the maximum counter value.
     */
     void setStart(int);
+
+    /*
+        Sets incrementation amount of counter to given number. Nagative values reverses the encoder direction.
+    */
+    void setStep(int);
 
     /*
         Sets counter to start value.
