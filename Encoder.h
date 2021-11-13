@@ -54,6 +54,17 @@ public:
     void setMax(int);
 
     /*
+        Sets counter start value to given number. If it is less than the minimum counter value, it will be set to the minimum counter value.
+        If it is above than the maximum counter value, it will be set to the maximum counter value.
+    */
+    void setStart(int);
+
+    /*
+        Sets counter to start value.
+    */
+    void resetCounter();
+
+    /*
         Returns the current counter value.
     */
     int getState();

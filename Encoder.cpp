@@ -73,6 +73,26 @@ void Encoder::setMax(int c_max){
 
 }
 
+void Encoder::setStart(int c_start){
+    if(Encoder::c_min <= c_start){
+        if(Encoder::c_max >= c_start){
+            Encoder::c_start = c_start;
+        }
+        else{
+            Encoder::c_start = Encoder::c_max;
+        }
+    }
+    else{
+        Encoder::c_start = Encoder::c_min;
+    }
+
+}
+
+void Encoder::resetCounter(){
+    Encoder::counter = Encoder::c_start;
+
+}
+
 int Encoder::getState(){ return Encoder::counter; }
 
 #endif
