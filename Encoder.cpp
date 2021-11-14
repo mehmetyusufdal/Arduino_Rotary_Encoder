@@ -32,6 +32,7 @@ Encoder::Encoder(int A, int B, int c_start, int c_step, int c_min, int c_max){
         Encoder::c_start = c_min;
     }
 
+    Encoder::last_count = Encoder::counter;
     Encoder::A = A;
     Encoder::B = B;
     
@@ -42,8 +43,9 @@ Encoder::Encoder(int A, int B, int c_start, int c_step, int c_min, int c_max){
 
 }
 
-void Encoder::stateControl(){
+bool Encoder::stateControl(){
     Encoder::A_state = digitalRead(Encoder::A);
+    bool stateChng = false;
 
     if(Encoder::A_state != Encoder::A_last_state){
         if(digitalRead(Encoder::B) != Encoder::A_state){
@@ -56,6 +58,13 @@ void Encoder::stateControl(){
         Encoder::A_last_state = Encoder::A_state;
     }
 
+    if(Encoder::counter != Encoder:: last_count){
+        stateChng = true;
+        Encoder::last_count = Encoder::counter;
+    }
+
+    return stateChng;
+    
 }
 
 void Encoder::setMin(int c_min){
@@ -89,15 +98,9 @@ void Encoder::setStart(int c_start){
 
 }
 
-void Encoder::setStep(int c_step){
-    Encoder::c_step = c_step;
-    
-}
+void Encoder::setStep(int c_step){ Encoder::c_step = c_step; }
 
-void Encoder::resetCounter(){
-    Encoder::counter = Encoder::c_start;
-
-}
+void Encoder::resetCounter(){ Encoder::counter = Encoder::c_start; }
 
 int Encoder::getState(){ return Encoder::counter; }
 

@@ -13,8 +13,6 @@
 
 Encoder encoder(ENC_CLK, ENC_DT); // Create an encoder object with default settings.
 
-int encoder_last_state = encoder.getState(); // State control variable for printing the counter on change.
-
 void setup()
 {
   pinMode(ENC_SW, INPUT_PULLUP); // Encoder switch.
@@ -25,13 +23,8 @@ void setup()
 
 void loop()
 {
-  encoder.stateControl(); // Check the state change of the encoder.
-
   // If the encoders state has changed, print the new counter value.
-  if(encoder_last_state != encoder.getState()){
-    Serial.println(encoder.getState());
-    encoder_last_state = encoder.getState();
-  }
+  if(encoder.stateControl()) Serial.println(encoder.getState());
 
   // If the encoder switch pressed, reset the counter.
   if(!digitalRead(ENC_SW)) encoder.resetCounter();

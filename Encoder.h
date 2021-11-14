@@ -16,6 +16,7 @@ private:
     int A, B; // A (CLK) & B (DT) pins.
     int A_state, B_state, A_last_state; // To calculate turn count of encoder.
     int counter; // Turn count of encoder.
+    int last_count; // To detect change on counter.
     int c_min, c_max; // Min & max value of counter.
     int c_start; // Start value of counter.
     int c_step; // Incrementation amount of counter.
@@ -39,9 +40,9 @@ public:
     Encoder(int, int, int=0, int=1, int=N_INF, int=P_INF);
     
     /*
-        Calculates turn count.
+        Calculates turn count and returns true if counter value changes.
     */
-    void stateControl();
+    bool stateControl();
 
     /*
         If the given number is less then the maximum counter value, sets the minimum counter value to given number. 
